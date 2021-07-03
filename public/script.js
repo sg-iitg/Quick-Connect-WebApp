@@ -4,16 +4,17 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  port: '3030'
 })
 
+let peers={}
+let users_list = users_dict
 
 let myVideoStream;
 const myVideo = document.createElement('video')
+// so that we don't hear our own voice
 myVideo.muted = true;
 
-const peers = {}
-const users = []
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
@@ -29,7 +30,8 @@ navigator.mediaDevices.getUserMedia({
     })
   })
 
-  socket.on('user-connected', userId => {
+  socket.on('user-connected', (userId, users) => {
+    users_list[Object.keys(users)[0]] = users[Object.keys(users)[0]]
     setTimeout(connectToNewUser,1000,userId,stream)
   })
 
@@ -44,33 +46,29 @@ navigator.mediaDevices.getUserMedia({
   });
 
   socket.on("createMessage", (message, id) => {
-    $(".messages").append(`<li class="message"><b>${id}</b><br/>${message}</li>`);
+    let username = users_list[id]
+    $(".messages").append(`<li class="message"><b>`+username+`</b><br/>${message}</li>`);
     scrollToBottom()
   })
 })
 
 socket.on('user-disconnected', userId => {
+  alert(users_list[userId] + " left!")
+  delete users_list[userId]
   if (peers[userId]) peers[userId].close()
 })
 
 myPeer.on('open', id => {
-  var ul = document.getElementById("participants-list-show");
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(id));
-  ul.appendChild(li);
+
+  users_list[id]= "You"
   socket.emit('join-room', ROOM_ID, id)
 })
 
 function connectToNewUser(userId, stream) {
-
-  var ul = document.getElementById("participants-list-show");
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(userId));
-  ul.appendChild(li);
-
-
+  // users.push(userId)
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
+  
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
   })
@@ -89,13 +87,10 @@ function addVideoStream(video, stream) {
   videoGrid.append(video)
 }
 
-
-
 const scrollToBottom = () => {
   var d = $('.main__chat_window');
   d.scrollTop(d.prop("scrollHeight"));
 }
-
 
 const muteUnmute = () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
@@ -131,23 +126,37 @@ const setMuteButton = () => {
 const setUnmuteButton = () => {
   const html = `
     <i class="unmute fas fa-microphone-slash"></i>
-    <span>Unmute</span>
-  `
+    <span>Unmute</span>`
   document.querySelector('.main__mute_button').innerHTML = html;
 }
 
 const setStopVideo = () => {
   const html = `
     <i class="fas fa-video"></i>
-    <span>Stop Video</span>
-  `
+    <span>Stop Video</span>`
   document.querySelector('.main__video_button').innerHTML = html;
 }
 
 const setPlayVideo = () => {
   const html = `
   <i class="stop fas fa-video-slash"></i>
-    <span>Play Video</span>
-  `
+    <span>Play Video</span>`
   document.querySelector('.main__video_button').innerHTML = html;
+}
+
+function showParticipantList()
+{
+  let n = users_list.length;
+
+  let list = document.getElementById("participants-list-show");
+  list.innerHTML='';
+
+  console.log(users_list)
+  
+  for (const [key, value] of Object.entries(users_list)) 
+  {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(value));
+    list.appendChild(li);
+  }
 }

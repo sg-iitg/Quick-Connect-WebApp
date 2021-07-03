@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</head>
+<body>
+    <br>
+    Username: <input type="text" id="get_username" placeholder="Enter your username..."><br>
+    <form action="http://localhost:3030/room" method="POST" id="start_meet">
+        <input style="display: none;" name="username_start_user" id="username_start_user" type="text"></input>
+       <button type="button" onclick="startMeet()">Start a meeting</button>
+    </form>
+
+    <form action="http://localhost:3030/join" method="POST" id="join_meet">
+        Room Id: <input type="text" name="roomid" placeholder="Enter room id..."><br>
+        <input style="display: none;" name="username_join_user" id="username_join_user" type="text"></input>
+       <button type="button" onclick="joinMeet()">Join a meeting</button>
+    </form>
+
+    <script>
+        function startMeet()
+        {
+            let username = $('#get_username').val();
+            console.log(username)
+            if(username=='')
+            {
+                alert('Please enter username')
+            }
+            else
+            {
+                $('#username_start_user').val(username)
+                $('#start_meet').submit()    
+            }
+        }
+        function joinMeet()
+        {
+            let username = $('#get_username').val();
+            if(username=='')
+            {
+                alert('Please enter username')
+            }
+            else
+            {
+                $('#username_join_user').val(username)
+                $('#join_meet').submit()    
+            }
+        }
+    </script>
+</body>
+</html>

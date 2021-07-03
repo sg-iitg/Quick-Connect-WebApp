@@ -14,8 +14,10 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <script src="script.js" defer></script>
-   <script>
+   <script type="text/javascript">
       const ROOM_ID = "<%= roomId %>"
+      const users_dict = JSON.parse('<%- JSON.stringify(users) %>');
+      console.log(users_dict)
    </script>
    <style>
       #video-grid{
@@ -52,7 +54,7 @@
             </div>
             <div class="main__controls__block">
                <div class="main__controls__button">
-                  <i class="fas fa-user-friends"  data-toggle="modal" data-target="#participant-modal"></i>Participants
+                  <i class="fas fa-user-friends"  onclick="showParticipantList()" data-toggle="modal" data-target="#participant-modal"></i>Participants
                </div>
                <div class="main__controls__button">
                   <i class="fas fa-comment-alt"></i>
@@ -93,9 +95,6 @@
                   <ul id="participants-list-show">
                   </ul>       
               </div>
-              <!-- <div class="modal-footer">
-                  <button class="create_btn_dash" style="height: 30px;" data-dismiss="modal" id="expert_feedback_data" onclick=CopyText()>Copy</button>
-              </div> -->
           </div>
       </div>
   </div>
