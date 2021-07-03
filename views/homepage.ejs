@@ -10,12 +10,12 @@
 <body>
     <br>
     Username: <input type="text" id="get_username" placeholder="Enter your username..."><br>
-    <form action="http://localhost:3030/room" method="POST" id="start_meet">
+    <form action="/room" method="POST" id="start_meet">
         <input style="display: none;" name="username_start_user" id="username_start_user" type="text"></input>
        <button type="button" onclick="startMeet()">Start a meeting</button>
     </form>
 
-    <form action="http://localhost:3030/join" method="POST" id="join_meet">
+    <form action="/join" method="POST" id="join_meet">
         Room Id: <input type="text" name="roomid" placeholder="Enter room id..."><br>
         <input style="display: none;" name="username_join_user" id="username_join_user" type="text"></input>
        <button type="button" onclick="joinMeet()">Join a meeting</button>
