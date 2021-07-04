@@ -89,9 +89,10 @@ io.on('connection', socket => {
       io.to(roomId).emit('createMessage', message, userId)
   }); 
 
-    socket.on('disconnect', () => {
-      socket.to(roomId).broadcast.emit('user-disconnected', userId)
-    })
+  socket.on('disconnect', () => {
+    delete users[roomId][userId]
+    socket.to(roomId).broadcast.emit('user-disconnected', userId)
+  })
   })
 })
 

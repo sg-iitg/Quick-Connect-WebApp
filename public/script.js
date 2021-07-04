@@ -59,7 +59,6 @@ socket.on('user-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-
   users_list[id]= "You"
   socket.emit('join-room', ROOM_ID, id)
 })
