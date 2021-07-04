@@ -160,3 +160,16 @@ function showParticipantList()
     list.appendChild(li);
   }
 }
+
+function sendInvite()
+{
+  let div= document.getElementById('invite_message');
+  let mssg = "Hey! Let's connect over a video chat. Here is the website link: https://boxing-poppy-43327.herokuapp.com/. When prompted, enter this roomId: " +ROOM_ID;
+  div.innerHTML= mssg;    
+}
+
+function copyInviteMessage()
+{
+  $("#invite_message").select();
+    document.execCommand('copy');
+}

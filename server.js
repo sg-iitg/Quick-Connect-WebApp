@@ -25,7 +25,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 let users = {}
-let username = []
+let username = ''
+
+// get the username from frontend and redirect to a new room
+app.get('/leave', (req, res) => {
+  res.render('leave')
+});
 
 // render homepage
 app.get('/', (req, res) => {
@@ -46,16 +51,23 @@ app.post('/join', (req, res) => {
 
 // render the room, and send the roomId
 app.get('/:room', (req, res) => {
-  let roomid = req.params.room
-  let dict ={}
-  if(roomid in users)
+  if(username=='')
   {
-    dict = users[roomid]
+    res.redirect('/')
   }
-  else{
-    dict= []
+  else
+  {
+    let roomid = req.params.room
+    let dict ={}
+    if(roomid in users)
+    {
+      dict = users[roomid]
+    }
+    else{
+      dict= []
+    }
+    res.render('room', { roomId: req.params.room, users: dict}) 
   }
-  res.render('room', { roomId: req.params.room, users: dict}) 
 })
 
 io.on('connection', socket => {
@@ -68,7 +80,7 @@ io.on('connection', socket => {
     dict[userId] = username
 
     users[roomId][userId]= username
-    
+    username = ''
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId, dict);
     // messages

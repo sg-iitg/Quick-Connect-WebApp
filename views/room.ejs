@@ -54,6 +54,10 @@
             </div>
             <div class="main__controls__block">
                <div class="main__controls__button">
+                  <i class="fas fa-solid fa-user-plus" onclick="sendInvite()" data-toggle="modal" data-target="#invite-modal"></i>
+                  <span>Invite friends</span>
+               </div>
+               <div class="main__controls__button">
                   <i class="fas fa-user-friends"  onclick="showParticipantList()" data-toggle="modal" data-target="#participant-modal"></i>Participants
                </div>
                <div class="main__controls__button">
@@ -63,7 +67,7 @@
             </div>
             <div class="main__controls__block">
                <div class="main__controls__button">
-                  <span class="leave_meeting">Leave Meeting</span>
+                  <a onclick="location.href='/leave';"><span class="leave_meeting">Leave Meeting</span></a>
                </div>
             </div>
          </div>
@@ -98,5 +102,26 @@
           </div>
       </div>
   </div>
+
+  <div class="modal fade" id="invite-modal" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header" style="display: inline;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="text-center">Send Invite</h3>
+         </div>
+         <div class="modal-body">  
+            <div class="field">
+               <textarea id="invite_message" rows="3" cols="60" readonly>
+
+               </textarea>   
+            </div>  
+         </div>
+         <div class="modal-footer">
+            <button style="height: 30px;" data-dismiss="modal" id="invite_ppl" onclick=copyInviteMessage()>Copy</button>
+         </div>
+      </div>
+   </div>
+</div>
 </body>
 </html>
