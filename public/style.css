@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 .main {
-    min-height: 100vh;
-    height: auto;
+    height: 100vh;
+    /* height: auto; */ 
     display: flex;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -70,13 +70,18 @@
 }
 
 .main__header {
-    padding-top: 5px;
+    padding-top: 20px;
     color: #F5F5F5;
     text-align: center;
     font-size: medium;
 }
 
 .main__chat_window {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.main__videos{
     flex-grow: 1;
     overflow-y: auto;
 }

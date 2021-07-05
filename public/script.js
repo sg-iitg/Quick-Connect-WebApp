@@ -9,6 +9,7 @@ const myPeer = new Peer(undefined, {
 
 let peers={}
 let users_list = users_dict
+let last_username =''
 
 let myVideoStream;
 const myVideo = document.createElement('video')
@@ -47,7 +48,15 @@ navigator.mediaDevices.getUserMedia({
 
   socket.on("createMessage", (message, id) => {
     let username = users_list[id]
-    $(".messages").append(`<li class="message"><b>`+username+`</b><br/>${message}</li>`);
+    if(last_username==username)
+    {
+      $(".messages").append(`<li class="message">${message}</li>`);
+    }
+    else
+    {
+      $(".messages").append(`<li class="message"><b>`+username+`</b><br/>${message}</li>`);
+    }
+    last_username= username
     scrollToBottom()
   })
 })
