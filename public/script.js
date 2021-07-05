@@ -64,10 +64,10 @@ myPeer.on('open', id => {
 })
 
 function connectToNewUser(userId, stream) {
-  // users.push(userId)
+
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
-  
+
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
   })
@@ -149,8 +149,6 @@ function showParticipantList()
 
   let list = document.getElementById("participants-list-show");
   list.innerHTML='';
-
-  console.log(users_list)
   
   for (const [key, value] of Object.entries(users_list)) 
   {

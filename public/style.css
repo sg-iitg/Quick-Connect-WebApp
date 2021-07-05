@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 .main {
     min-height: 100vh;
     height: auto;
     display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .main__left {
@@ -24,11 +26,11 @@
 }
 
 .main__controls {
-    background-color: #1C1E20;
+    background-color: #343434;
 }
 
 .main__right {
-    background-color: #242324;
+    background-color: #343434;
     border-left: 1px solid #3D3D42;
 }
 
@@ -54,7 +56,7 @@
 }
 
 .main__controls__button:hover {
-    background-color: #343434;
+    background-color: #565656;
     border-radius: 5px;
 }
 
@@ -71,6 +73,7 @@
     padding-top: 5px;
     color: #F5F5F5;
     text-align: center;
+    font-size: medium;
 }
 
 .main__chat_window {
@@ -95,10 +98,19 @@
     color: #F5F5F5;
 }
 
-.leave_meeting {
+/* .leave_meeting {
     color: #EB534B;
+} */
+
+/* .unmute, .stop {
+    color: #CC3B33;
+} */
+
+span {
+    font-family: "poppins", Arial, Helvetica, sans-serif;
 }
 
-.unmute, .stop {
-    color: #CC3B33;
+b {
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+    font-size: 15px;
 }

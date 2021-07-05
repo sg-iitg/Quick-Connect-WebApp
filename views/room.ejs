@@ -53,12 +53,13 @@
                </div>
             </div>
             <div class="main__controls__block">
-               <div class="main__controls__button">
-                  <i class="fas fa-solid fa-user-plus" onclick="sendInvite()" data-toggle="modal" data-target="#invite-modal"></i>
+               <div class="main__controls__button" onclick="sendInvite()" data-toggle="modal" data-target="#invite-modal">
+                  <i class="fas fa-solid fa-user-plus"></i>
                   <span>Invite friends</span>
                </div>
-               <div class="main__controls__button">
-                  <i class="fas fa-user-friends"  onclick="showParticipantList()" data-toggle="modal" data-target="#participant-modal"></i>Participants
+               <div class="main__controls__button" onclick="showParticipantList()" data-toggle="modal" data-target="#participant-modal">
+                  <i class="fas fa-user-friends"></i>
+                  <span>Participants</span>
                </div>
                <div class="main__controls__button">
                   <i class="fas fa-comment-alt"></i>
@@ -66,15 +67,18 @@
                </div>
             </div>
             <div class="main__controls__block">
-               <div class="main__controls__button">
-                  <a href= "/leave"><span class="leave_meeting">Leave Meeting</span></a>
+               <div class="main__controls__button" onclick="location.href = '/leave';">
+                  <!-- <a href= "/leave"> -->
+                     <i class="fas fa-solid fa-phone-slash"></i>
+                     <span class="leave_meeting">Leave Meeting</span> 
+                   <!-- </a> -->
                </div>
             </div>
          </div>
       </div>
       <div class="main__right">
          <div class="main__header">
-            <h6>Chat</h6>
+            <span>Chat</span>
          </div>
          <div class="main__chat_window">
             <ul class="messages">
