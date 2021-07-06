@@ -97,10 +97,12 @@
 }
 
 .main__message_container input {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     background-color: transparent;
     border: none;
     color: #F5F5F5;
+    width: 80%;
+    margin-right: 10px;
 }
 
 /* .leave_meeting {
@@ -118,4 +120,11 @@ span {
 b {
     font-family: "poppins", Arial, Helvetica, sans-serif;
     font-size: 15px;
+}
+
+.side__controls {
+    color: #D2D2D2;
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 10px;
 }
