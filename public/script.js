@@ -1,14 +1,6 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
-// const configuration= {iceServers: [
-//   {
-//     url: 'turn:relay.backups.cz?transport=tcp',
-//     credential: 'webrtc',
-//     username: 'webrtc'
-//   }
-// ]}
-
 let configuration = {
   'iceServers': [
       {

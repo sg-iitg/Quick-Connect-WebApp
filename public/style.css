@@ -14,6 +14,7 @@
 
 .main__right {
     flex: 0.2;
+    max-width: 21%;
 }
 
 .main__videos {
@@ -98,9 +99,10 @@
 
 .main__message_container input {
     /* flex-grow: 1; */
-    background-color: transparent;
+    background-color: darkgray;
     border: none;
-    color: #F5F5F5;
+    /* color: #F5F5F5; */
+    color: black;
     width: 80%;
     margin-right: 10px;
 }
@@ -128,3 +130,47 @@ b {
     /* justify-content: space-between; */
     padding: 10px;
 }
+
+#participants-list-show {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  #participants-list-show li {
+    padding-left: 1em;
+    text-indent: -1em;
+    font-size: 16px;
+    margin-left: 25px;
+    font-weight: 525;
+  }
+  
+  #participants-list-show li:before {
+    font-family: FontAwesome;
+    content: "\f406";
+    padding-right: 5px;
+    font-size: 19px;
+    vertical-align: middle;
+  }
+
+  .copy_button {
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+    background: #565656;
+    padding: 10px;
+    color: #f4f4f4;
+    cursor: pointer;
+    box-shadow: -10px -10px 20px rgb(255, 255, 255),
+      10px 10px 20px rgba(0, 0, 0, 0.4);
+    /* margin-bottom: 1.5rem; */
+  }
+  
+  .copy_button:focus,
+  .copy_button:hover {
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.4),
+      inset 5px 5px 10px rgba(0, 0, 0, 0.4);
+  }
