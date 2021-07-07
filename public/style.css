@@ -1,18 +1,21 @@
+/* using google api for poppin font */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 .main {
-    height: 100vh;
-    /* height: auto; */ 
+    /* make sure the page fills the entire screen */
+    height: 100vh; 
     display: flex;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .main__left {
+    /* video grid occupies 80% */
     flex: 0.8;
     display: flex;
     flex-direction: column;
 }
 
 .main__right {
+    /* chat window occupies 20% */
     flex: 0.2;
     max-width: 21%;
 }
@@ -38,6 +41,7 @@
 .main__controls {
     color: #D2D2D2;
     display: flex;
+    /* helps group the 3 control-sections (mute+video, invite+particpant+chat, leave meet) with equal spacing */
     justify-content: space-between;
     padding: 5px;
 }
@@ -57,6 +61,7 @@
 }
 
 .main__controls__button:hover {
+    /* on hover on controls, change bg */
     background-color: #565656;
     border-radius: 5px;
 }
@@ -79,16 +84,19 @@
 
 .main__chat_window {
     flex-grow: 1;
+    /* sets the chat window to scrollable as soon the visible space is filled */
     overflow-y: auto;
 }
 
-.main__videos{
+.main__videos {
     flex-grow: 1;
+    /* sets the video grid to scrollable as soon the visible space is filled */
     overflow-y: auto;
 }
 
-.messages{
+.messages {
     color: white;
+    /* remove bullet in front of li */
     list-style: none;
 }
 
@@ -98,22 +106,13 @@
 }
 
 .main__message_container input {
-    /* flex-grow: 1; */
     background-color: darkgray;
     border: none;
-    /* color: #F5F5F5; */
     color: black;
+    /* set the chat input space to 80% of chat window, leaving space for the send icon */
     width: 80%;
     margin-right: 10px;
 }
-
-/* .leave_meeting {
-    color: #EB534B;
-} */
-
-/* .unmute, .stop {
-    color: #CC3B33;
-} */
 
 span {
     font-family: "poppins", Arial, Helvetica, sans-serif;
@@ -127,33 +126,35 @@ b {
 .side__controls {
     color: #D2D2D2;
     display: flex;
-    /* justify-content: space-between; */
     padding: 10px;
 }
 
 #participants-list-show {
+    /* remove the bullet from li of particpant list */
     list-style: none;
     margin-left: 0;
     padding-left: 0;
-  }
+}
   
-  #participants-list-show li {
+#participants-list-show li {
     padding-left: 1em;
     text-indent: -1em;
     font-size: 16px;
     margin-left: 25px;
     font-weight: 525;
-  }
+}
   
-  #participants-list-show li:before {
+#participants-list-show li:before {
     font-family: FontAwesome;
+    /* get the user icon being shown in front of each partcipant name from font-awesome */
     content: "\f406";
     padding-right: 5px;
     font-size: 19px;
     vertical-align: middle;
-  }
+}
 
-  .copy_button {
+/* set the style of copy button same as that being used on home page */
+.copy_button {
     width: fit-content;
     height: fit-content;
     border: none;
@@ -164,13 +165,25 @@ b {
     padding: 10px;
     color: #f4f4f4;
     cursor: pointer;
-    box-shadow: -10px -10px 20px rgb(255, 255, 255),
-      10px 10px 20px rgba(0, 0, 0, 0.4);
-    /* margin-bottom: 1.5rem; */
-  }
+    box-shadow: -10px -10px 20px rgb(255, 255, 255), 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
   
-  .copy_button:focus,
-  .copy_button:hover {
+.copy_button:focus,
+.copy_button:hover {
     box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.4),
-      inset 5px 5px 10px rgba(0, 0, 0, 0.4);
-  }
+    inset 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+#video-grid{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+video{
+    /* fixed height and width of video elements */
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    padding: 8px;
+}

@@ -1,203 +1,138 @@
 const socket = io('/')
+// the video grid holds all the video elements
 const videoGrid = document.getElementById('video-grid')
 
+// configure the STUN servers
 let configuration = {
-  'iceServers': [
-      {
-          "urls": ["stun:stun.l.google.com:19302", 
-          "stun:stun1.l.google.com:19302", 
-          "stun:stun2.l.google.com:19302"]
-      }
-  ]
+    'iceServers': [
+        {
+        "urls": ["stun:stun.l.google.com:19302", 
+        "stun:stun1.l.google.com:19302", 
+        "stun:stun2.l.google.com:19302"]
+        }
+    ]
 }
 
+// setup the peer connection, pass the configs to it
 const myPeer = new Peer(undefined, {
-  config: configuration,
-  path: '/peerjs',
-  host: '/',
-  port: '443'
+    config: configuration,
+    path: '/peerjs',
+    host: '/',
+    port: '443'
 })
 
+// stores all the calls
 let peers={}
-let users_list = users_dict
-let last_username =''
 
+// stores the userid and username mapping
+// initialise it with the list of users who joined before the current user
+let users_list = users_dict
+
+//  stores the id of last person who texted
+// helpul in grouping continuous text by same person together
+let last_id =''
+
+// stores current users' stream
 let myVideoStream;
 const myVideo = document.createElement('video')
 // so that we don't hear our own voice
 myVideo.muted = true;
 
+// get the audio and video
 navigator.mediaDevices.getUserMedia({
-  video: true,
-  audio: true
+    video: true,
+    audio: true
 }).then(stream => {
-  myVideoStream = stream;
-  addVideoStream(myVideo, stream)
 
-  myPeer.on('call', call => {
-    call.answer(stream)
-    const video = document.createElement('video')
-    call.on('stream', userVideoStream => {
-      addVideoStream(video, userVideoStream)
+    myVideoStream = stream;
+    // add our video to the stream
+    addVideoStream(myVideo, stream)
+
+    // when someone calls us, answer the call by sending our stream and video element to them
+    myPeer.on('call', call => {
+        call.answer(stream)
+        const video = document.createElement('video')
+        call.on('stream', userVideoStream => {
+            addVideoStream(video, userVideoStream)
+        })
     })
-  })
 
-  socket.on('user-connected', (userId, users) => {
-    users_list[Object.keys(users)[0]] = users[Object.keys(users)[0]]
-    setTimeout(connectToNewUser,1000,userId,stream)
-  })
+    // when user id connected
+    // fetch username and userId and store in global variable
+    socket.on('user-connected', (userId, users) => {
+        users_list[Object.keys(users)[0]] = users[Object.keys(users)[0]]
+        setTimeout(connectToNewUser,1000,userId,stream)
+    })
 
-  // input value
-  let text = $("input");
-  // when press enter send message
-  $('html').keydown(function (e) {
-    if (e.which == 13 && text.val().length !== 0) {
-      socket.emit('message', text.val());
-      text.val('')
-    }
-  });
+    // get the text element in chat input box
+    let text = $("input");
+    // when press enter send message
+    $('html').keydown(function (e) {
+        //  whenever enter is pressed and text is not empty
+        // emit the message
+        // and empty the chat input box
+        if (e.which == 13 && text.val().length !== 0) {
+          socket.emit('message', text.val());
+          text.val('')
+        }
+    });
 
-  socket.on("createMessage", (message, id) => {
-    let username = users_list[id]
-    if(last_username==username)
-    {
-      $(".messages").append(`<li class="message">${message}</li>`);
-    }
-    else
-    {
-      $(".messages").append(`<li class="message"><b>`+username+`</b><br/>${message}</li>`);
-    }
-    last_username= username
-    scrollToBottom()
-  })
+    socket.on("createMessage", (message, id) => {
+        let username = users_list[id]
+        // if mssg is by same person as last time, do not put username
+        if(last_id==id) {
+            $(".messages").append(`<li class="message">${message}</li>`);
+        }
+        else {
+            $(".messages").append(`<li class="message"><b>`+username+`</b><br/>${message}</li>`);
+        }
+        // update the last id
+        last_id= id
+        scrollToBottom()
+    })
 })
 
+// whenver a user disconnects, delete him from the list and alert in all other rooms
+// also remove his stream
 socket.on('user-disconnected', userId => {
-  alert(users_list[userId] + " left!")
-  delete users_list[userId]
-  if (peers[userId]) peers[userId].close()
+    alert(users_list[userId] + " left!")
+
+    if(users_list[userId]) {
+        delete users_list[userId]
+    }
+    if (peers[userId]) {
+        peers[userId].close()
+    }
 })
 
+// whenever a peer connection is established, save the userId with username - you
+// emit that a room with this roomId and userId has been created
 myPeer.on('open', id => {
-  users_list[id]= "You"
-  socket.emit('join-room', ROOM_ID, id)
+    users_list[id]= "You"
+    socket.emit('join-room', ROOM_ID, id)
 })
 
 function connectToNewUser(userId, stream) {
-
-  const call = myPeer.call(userId, stream)
-  const video = document.createElement('video')
-
-  call.on('stream', userVideoStream => {
-    addVideoStream(video, userVideoStream)
-  })
-  call.on('close', () => {
-    video.remove()
-  })
-
-  peers[userId] = call
+    const call = myPeer.call(userId, stream)
+    const video = document.createElement('video')
+    // add the stream of new user
+    call.on('stream', userVideoStream => {
+        addVideoStream(video, userVideoStream)
+    })
+    // remove his video, when he leaves
+    call.on('close', () => {
+        video.remove()
+    })
+    // save the stream, will be required when user disconnects
+    peers[userId] = call
 }
 
+// set the source of this video element to stream,
+// append to video-grid
 function addVideoStream(video, stream) {
-  video.srcObject = stream
-  video.addEventListener('loadedmetadata', () => {
-    video.play()
-  })
-  videoGrid.append(video)
-}
-
-const scrollToBottom = () => {
-  var d = $('.main__chat_window');
-  d.scrollTop(d.prop("scrollHeight"));
-}
-
-const muteUnmute = () => {
-  const enabled = myVideoStream.getAudioTracks()[0].enabled;
-  if (enabled) {
-    myVideoStream.getAudioTracks()[0].enabled = false;
-    setUnmuteButton();
-  } else {
-    setMuteButton();
-    myVideoStream.getAudioTracks()[0].enabled = true;
-  }
-}
-
-const playStop = () => {
-  console.log('object')
-  let enabled = myVideoStream.getVideoTracks()[0].enabled;
-  if (enabled) {
-    myVideoStream.getVideoTracks()[0].enabled = false;
-    setPlayVideo()
-  } else {
-    setStopVideo()
-    myVideoStream.getVideoTracks()[0].enabled = true;
-  }
-}
-
-const setMuteButton = () => {
-  const html = `
-    <i class="fas fa-microphone"></i>
-    <span>Mute</span>
-  `
-  document.querySelector('.main__mute_button').innerHTML = html;
-}
-
-const setUnmuteButton = () => {
-  const html = `
-    <i class="unmute fas fa-microphone-slash"></i>
-    <span>Unmute</span>`
-  document.querySelector('.main__mute_button').innerHTML = html;
-}
-
-const setStopVideo = () => {
-  const html = `
-    <i class="fas fa-video"></i>
-    <span>Stop Video</span>`
-  document.querySelector('.main__video_button').innerHTML = html;
-}
-
-const setPlayVideo = () => {
-  const html = `
-  <i class="stop fas fa-video-slash"></i>
-    <span>Play Video</span>`
-  document.querySelector('.main__video_button').innerHTML = html;
-}
-
-function showParticipantList()
-{
-  let n = users_list.length;
-
-  let list = document.getElementById("participants-list-show");
-  list.innerHTML='';
-  
-  for (const [key, value] of Object.entries(users_list)) 
-  {
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode(value));
-    list.appendChild(li);
-  }
-}
-
-function sendInvite()
-{
-  let div= document.getElementById('invite_message');
-  let mssg = "Hey! Let's connect over a video chat. Here is the website link: https://boxing-poppy-43327.herokuapp.com/. When prompted, enter this roomId: " +ROOM_ID;
-  div.innerHTML= mssg;    
-}
-
-function copyInviteMessage()
-{
-  $("#invite_message").select();
-    document.execCommand('copy');
-}
-
-
-function sendMessageButton()
-{
-  let txt= document.getElementById('chat_message');
-  if(txt.value.length !== 0)
-  {
-    socket.emit('message', txt.value);
-    txt.value = ''
-  }
+    video.srcObject = stream
+    video.addEventListener('loadedmetadata', () => {
+        video.play()
+    })
+    videoGrid.append(video)
 }
