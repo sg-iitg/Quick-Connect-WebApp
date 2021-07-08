@@ -92,6 +92,7 @@
     flex-grow: 1;
     /* sets the video grid to scrollable as soon the visible space is filled */
     overflow-y: auto;
+    flex-wrap: wrap;
 }
 
 .messages {
@@ -184,6 +185,5 @@ video{
     /* fixed height and width of video elements */
     height: 300px;
     width: 400px;
-    object-fit: cover;
     padding: 8px;
 }

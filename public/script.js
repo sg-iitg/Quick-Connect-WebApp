@@ -24,6 +24,8 @@ const myPeer = new Peer(undefined, {
 // stores all the calls
 let peers={}
 
+let currentPeer= []
+
 // stores the userid and username mapping
 // initialise it with the list of users who joined before the current user
 let users_list = users_dict
@@ -35,8 +37,11 @@ let last_id =''
 // stores current users' stream
 let myVideoStream;
 const myVideo = document.createElement('video')
+myVideo.setAttribute('onclick', 'zoomVideo(this)')
+
 // so that we don't hear our own voice
 myVideo.muted = true;
+
 
 // get the audio and video
 navigator.mediaDevices.getUserMedia({
@@ -52,9 +57,17 @@ navigator.mediaDevices.getUserMedia({
     myPeer.on('call', call => {
         call.answer(stream)
         const video = document.createElement('video')
+        video.setAttribute('onclick', 'zoomVideo(this)')
+
         call.on('stream', userVideoStream => {
             addVideoStream(video, userVideoStream)
         })
+        currentPeer.push(call.peerConnection);
+        
+        call.on('close', function(){
+            video.remove();
+            alert("The videocall has finished");
+        });
     })
 
     // when user id connected
@@ -100,6 +113,7 @@ socket.on('user-disconnected', userId => {
     if(users_list[userId]) {
         delete users_list[userId]
     }
+
     if (peers[userId]) {
         peers[userId].close()
     }
@@ -115,6 +129,8 @@ myPeer.on('open', id => {
 function connectToNewUser(userId, stream) {
     const call = myPeer.call(userId, stream)
     const video = document.createElement('video')
+    video.setAttribute('onclick', 'zoomVideo(this)')
+
     // add the stream of new user
     call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
@@ -125,6 +141,8 @@ function connectToNewUser(userId, stream) {
     })
     // save the stream, will be required when user disconnects
     peers[userId] = call
+
+    currentPeer.push(call.peerConnection);
 }
 
 // set the source of this video element to stream,
@@ -135,4 +153,59 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video)
+}
+
+//screenShare
+function screenShare() {
+    // get the screen media
+    navigator.mediaDevices.getDisplayMedia({ 
+        video: {
+          cursor:'always'
+        },
+        audio: {
+               echoCancellation:true,
+               noiseSupprission:true
+        }   
+    }).then(stream => {
+        let videoTrack = stream.getVideoTracks()[0];
+
+        // if stream has ended, call stopStream
+        videoTrack.onended = function() {
+            stopScreenShare();
+        }
+
+        // get all the users to which this user is connected to, 
+        // and replace his video stream with the screen stream for everyone
+        for (let user=0; user<currentPeer.length; user++) {
+            let sender = currentPeer[user].getSenders().find(function(s) {
+                return s.track.kind == videoTrack.kind;
+            })
+            sender.replaceTrack(videoTrack);
+        }
+    })
+}
+   
+function stopScreenShare() {
+    // get all the users to which this user is connected to, 
+    // and replace his screen stream with the video stream for everyone
+    let videoTrack = myVideoStream.getVideoTracks()[0];
+
+    for (let user=0; user<currentPeer.length; user++){
+        let sender = currentPeer[user].getSenders().find(function(s){
+            return s.track.kind == videoTrack.kind;
+        }) 
+        sender.replaceTrack(videoTrack);
+    }       
+}
+
+// whenever someone clicks on a video element, 
+// zoom it, if already in zoom mode, reset
+function zoomVideo(event)
+{
+    if($(event).height() > 400) {
+        $(event).attr('style', 'width: 400px; height: 300px;')
+    }
+    else {
+        $(event).attr('style', 'width: 1000px; height: 600px;')
+    }
 }
