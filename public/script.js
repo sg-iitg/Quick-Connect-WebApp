@@ -24,6 +24,7 @@ const myPeer = new Peer(undefined, {
 // stores all the calls
 let peers={}
 
+// stores the connection stream
 let currentPeer= []
 
 // stores the userid and username mapping
@@ -198,14 +199,27 @@ function stopScreenShare() {
     }       
 }
 
-// whenever someone clicks on a video element, 
-// zoom it, if already in zoom mode, reset
-function zoomVideo(event)
-{
-    if($(event).height() > 400) {
-        $(event).attr('style', 'width: 400px; height: 300px;')
+$('document').ready(function(){
+    // as soon as we enter to the room, fill in previous chat if any
+    let num_of_mssgs = previous_mssgs.length;
+    let last_mssg_id=''
+    for(let i=0; i<num_of_mssgs; i++)
+    {
+        let by_id = previous_mssgs[i]['id']
+        let username = previous_mssgs[i]['name']
+        let mssg = previous_mssgs[i]['message']
+        // if mssg is by same person as last time, do not put username
+        if(last_mssg_id==by_id) {
+            $(".messages").append(`<li class="message">${mssg}</li>`);
+        }
+        else {
+            $(".messages").append(`<li class="message"><b>${username}</b><br/>${mssg}</li>`);
+        }
+        // update the last id
+        last_mssg_id= by_id
+        scrollToBottom()
     }
-    else {
-        $(event).attr('style', 'width: 1000px; height: 600px;')
-    }
-}
+    // update the global last id as well
+    // needed for fresh chats
+    last_id = last_mssg_id
+})

@@ -32,6 +32,7 @@ app.use(express.static('public'))
 // that is a dictionary whose values are also dictionaries
 let users = {}
 let username = ""
+let chat = {}
 
 // this post request is recieved when someone clicks on the Start meeting button
 // get the username from frontend 
@@ -78,10 +79,12 @@ app.get('/:room', (req, res) => {
         if(roomid in users) {
           dict = users[roomid]
         }
-        else {
-          dict= {}
+
+        let mssgs =[]
+        if(roomid in chat) {
+            mssgs= chat[roomid]
         }
-        res.render('meeting-area', { roomId: req.params.room, users: dict}) 
+        res.render('meeting-area', { roomId: req.params.room, users: dict, previous_messages: mssgs}) 
     }
 })
 
@@ -110,6 +113,15 @@ io.on('connection', socket => {
 
         // this is for chat feature
         socket.on('message', (message) => {
+            // if room doesn't exist in chat variable 
+            if(!(roomId in chat))
+            {
+                chat[roomId]= []
+            }
+            
+            // update chat in appropriate room
+            chat[roomId].push({"id": userId, "name": users[roomId][userId], "message": message})
+
             //send message to the same room, and pass who is sending the message
             io.to(roomId).emit('createMessage', message, userId)
         })

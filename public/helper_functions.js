@@ -72,3 +72,15 @@ function scrollToBottom() {
     var d = $('.main__chat_window');
     d.scrollTop(d.prop("scrollHeight"));
 }
+
+// whenever someone clicks on a video element, 
+// zoom it, if already in zoom mode, reset
+function zoomVideo(event)
+{
+    if($(event).height() > 400) {
+        $(event).attr('style', 'width: 400px; height: 300px;')
+    }
+    else {
+        $(event).attr('style', 'width: 1000px; height: 600px;')
+    }
+}
