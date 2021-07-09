@@ -12,8 +12,8 @@ let configuration = {
         },
         {
             'urls': 'turn:numb.viagenie.ca',
-            'credential': 'muazkh',
-            'username': 'webrtc@live.com'
+            'username': 'webrtc@live.com',
+            'credential': 'muazkh'
         },
     ]
 }
