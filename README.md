@@ -77,6 +77,8 @@ Two types of users can join a video call, the host or the invities:
 
 * Sharable invite message, easy to copy and share
 
+* Alert everyone when someone leaves the meet
+
 ### Leave meet page
 * Leave meet page, option to go back to hompepage
 
