@@ -116,3 +116,4 @@ PS: Videos of all participants were kept off while taking the screenshots for se
 * All icons have been taken from [FontAwesome](https://fontawesome.com/)
 * [Poppins](https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap) for fonts
 * [uuid](https://www.npmjs.com/package/uuid), to generate random and unique roomIDs
+* [CryptoJS](https://www.npmjs.com/package/crypto-js) for encrypting and decrypting chats
