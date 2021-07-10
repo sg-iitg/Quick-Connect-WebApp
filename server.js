@@ -21,6 +21,8 @@ const peerServer = ExpressPeerServer(server, {
 const { v4: uuidV4 } = require('uuid');
 const { json } = require('body-parser');
 
+var CryptoJS = require("crypto-js");
+
 // setup the peer server path, view engine and the folder where all js and css files will be found
 app.use('/peerjs', peerServer);
 app.set('view engine', 'ejs')
@@ -113,6 +115,7 @@ io.on('connection', socket => {
 
         // this is for chat feature
         socket.on('message', (message) => {
+
             // if room doesn't exist in chat variable 
             if(!(roomId in chat))
             {
@@ -121,7 +124,7 @@ io.on('connection', socket => {
             
             // update chat in appropriate room
             chat[roomId].push({"id": userId, "name": users[roomId][userId], "message": message})
-
+            console.log(chat)
             //send message to the same room, and pass who is sending the message
             io.to(roomId).emit('createMessage', message, userId)
         })

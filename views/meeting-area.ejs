@@ -17,6 +17,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <script src="script.js" defer></script>
       <script src="helper_functions.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
 
       <!-- fetch the roomId and users list coming from server -->
       <script type="text/javascript">
@@ -47,7 +48,7 @@
                      <i class="fas fa-video"></i>
                      <span>Stop Video</span>
                   </div>
-                  <div onclick="screenShare()" class="main__controls__button main__video_button" >
+                  <div onclick="screenShare()" class="main__controls__button main__video_button" id="screen-share">
                      <i class="fas fa-desktop"></i>
                      <span>Share Screen</span>
                   </div>

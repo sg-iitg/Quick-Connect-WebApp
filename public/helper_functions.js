@@ -61,7 +61,10 @@ function copyInviteMessage() {
 function sendMessageButton() {
     let txt= document.getElementById('chat_message');
     if(txt.value.length !== 0) {
-        socket.emit('message', txt.value);
+        // encrypt the messages before sending to server 
+        let encrypted = CryptoJS.AES.encrypt(txt.value, '9740').toString();
+
+        socket.emit('message', encrypted);
         txt.value = ''
     }
 }

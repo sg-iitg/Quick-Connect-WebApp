@@ -91,12 +91,18 @@ navigator.mediaDevices.getUserMedia({
         // emit the message
         // and empty the chat input box
         if (e.which == 13 && text.val().length !== 0) {
-          socket.emit('message', text.val());
+
+          // encrypt the messages before sending to server 
+          let encrypted = CryptoJS.AES.encrypt(text.val(), '9740').toString();
+          socket.emit('message', encrypted);
           text.val('')
         }
     });
 
     socket.on("createMessage", (message, id) => {
+        // decrypt the encrypted messages before displaying
+        message = CryptoJS.AES.decrypt(message, '9740').toString(CryptoJS.enc.Utf8);
+        
         let username = users_list[id]
         // if mssg is by same person as last time, do not put username
         if(last_id==id) {
@@ -173,6 +179,7 @@ function screenShare() {
                noiseSupprission:true
         }   
     }).then(stream => {
+        let element = $('#screen-share').attr("style", "background-color: #565656;")
         let videoTrack = stream.getVideoTracks()[0];
 
         // if stream has ended, call stopStream
@@ -192,6 +199,7 @@ function screenShare() {
 }
    
 function stopScreenShare() {
+    let element = $('#screen-share').attr("style", "")
     // get all the users to which this user is connected to, 
     // and replace his screen stream with the video stream for everyone
     let videoTrack = myVideoStream.getVideoTracks()[0];
@@ -213,6 +221,10 @@ $('document').ready(function(){
         let by_id = previous_mssgs[i]['id']
         let username = previous_mssgs[i]['name']
         let mssg = previous_mssgs[i]['message']
+
+        // decrypt the encrypted messages before displaying
+        mssg = CryptoJS.AES.decrypt(mssg, '9740').toString(CryptoJS.enc.Utf8);
+
         // if mssg is by same person as last time, do not put username
         if(last_mssg_id==by_id) {
             $(".messages").append(`<li class="message">${mssg}</li>`);
