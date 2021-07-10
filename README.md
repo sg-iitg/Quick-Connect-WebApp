@@ -4,7 +4,7 @@
 
 ## About The Website
 
-This is a web application made using Node.js framework, Socket.IO and PeerJS libraries. It allows group video and audio chat along with several other functionalities. I made this project as part of my submission for Microsoft Engage 2021. This was made as an attempt to develop a clone of Microsoft Teams application.
+This is a web application made using Node.js. This uses Socket.IO and PeerJS libraries to establish peer to peer connection. It allows group video and audio chat along with several other functionalities. I made this project as part of my submission for Microsoft Engage 2021. This was made as an attempt to develop a clone of Microsoft Teams application.
 
 ### Website Link
 A hosted version of this website on heroku can be found [here](https://boxing-poppy-43327.herokuapp.com/).
@@ -57,17 +57,17 @@ This will install all dependencies mentioned in package.json
 ```
 nodemon server.js 
 ```
-Note: Setup the peerjs and localhost to same ports when trying to run on local system
+Note: Setup the peerjs and local servers to listen on the same port when working on local host
 
 ## Usage
 ### Homepage
 
-Two types of users can join a video call, the host or the invities:
+Two types of users can join a video call, the host or the invitiees:
 * The host has to simply add their username and start a meeting. This will take him to a new room with a unique roomId using which he can invite other people to the meeting.
  
   ![](/window_snippets/start-meet.png)
   
-* Invities are required to add their username and the roomId of the particular meeting they wish to join.
+* Invitiees are required to add their username and the roomId of the particular meeting they wish to join.
 
   ![](/window_snippets/join-room.png)
   
@@ -104,6 +104,8 @@ Two types of users can join a video call, the host or the invities:
 * Come back to the same room to view the chat history
 
   ![](/window_snippets/chat-history.png)
+  
+PS: Videos of all participants were kept off while taking the screenshots for security reasons
   
 ## Acknowledgements
 
