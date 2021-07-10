@@ -73,22 +73,38 @@ Two types of users can join a video call, the host or the invities:
   
 ### Meeting Area
 * Meeting area looks something like this
+
   ![](/window_snippets/meet-area.png)
+  
 * View the participants list
+
   ![](/window_snippets/participants-list.png)
+  
 * Chat with people 
+
   ![](/window_snippets/chat.png)
+  
 * Sharable invite message, easy to copy and share
+
   ![](/window_snippets/send-invite.png)
+  
 * Ability to zoom in to a person's shared screen, on simple tap
+
   ![](/window_snippets/share-screen.png)
+  
 * Alert everyone when someone leaves the meet
+
   ![](/window_snippets/leave-meet.png)
+  
 ### Leave meet page
 * Leave meet page, option to go back to hompepage
+
   ![](/window_snippets/leave-meet-page.png)
+  
 * Come back to the same room to view the chat history
+
   ![](/window_snippets/chat-history.png)
+  
 ## Acknowledgements
 
 * [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
