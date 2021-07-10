@@ -81,7 +81,7 @@ Two types of users can join a video call, the host or the invities:
   ![](/window_snippets/leave-meet.png)
 ### Leave meet page
 * Leave meet page, option to go back to hompepage
-  ![](/window_snippets/leave-meet.png)
+  ![](/window_snippets/leave-meet-page.png)
 * Come back to the same room to view the chat history
   ![](/window_snippets/chat-history.png)
 ## Acknowledgements
