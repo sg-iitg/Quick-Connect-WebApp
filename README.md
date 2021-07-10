@@ -4,7 +4,7 @@
 
 ## About The Website
 
-This is a web application made using Node.js framework, Socket.IO and PeerJS libraries. It allows group video and audio chat along with several other functionalities. I made this project as part of my submission for Microsoft Engage 2021. This was made as an attempt to develop a clone of Microsoft Teams application.
+This is a web application made using Node.js. This uses Socket.IO and PeerJS libraries to establish peer to peer connection. It allows group video and audio chat along with several other functionalities. I made this project as part of my submission for Microsoft Engage 2021. This was made as an attempt to develop a clone of Microsoft Teams application.
 
 ### Website Link
 A hosted version of this website on heroku can be found [here](https://boxing-poppy-43327.herokuapp.com/).
