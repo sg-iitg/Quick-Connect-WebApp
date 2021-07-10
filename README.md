@@ -105,6 +105,8 @@ Two types of users can join a video call, the host or the invities:
 
   ![](/window_snippets/chat-history.png)
   
+PS: Videos of all participants were kept off while taking the screenshots for security reasons
+  
 ## Acknowledgements
 
 * [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
