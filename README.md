@@ -63,7 +63,7 @@ Note: Setup the peerjs and localhost to same ports when trying to run on local s
 
 Two types of users can join a video call, the host or the invities:
 * The host has to simply add their username and start a meeting. This will take him to a new room with a unique roomId using which he can invite other people to the meeting. 
-
+  ![](/window_snippets/start-meet.png)
 * Invities are required to add their username and the roomId of the particular meeting they wish to join.
 
 ### Meeting Area
