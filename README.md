@@ -35,7 +35,7 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 * HTML
 * CSS
 * Bootstrap
-* Javascript
+* JavaScript
 * jQuery
 
 ### Installation 
@@ -57,3 +57,12 @@ This will install all dependencies mentioned in package.json
 nodemon server.js 
 ```
 Note: Setup the peerjs and localhost to same ports when trying to run on local system
+
+## Acknowledgements
+
+* [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
+
+* Homepage template inspired from [CodePen](https://codepen.io/)
+* All icons have been taken from [FontAwesome](https://fontawesome.com/)
+* [Poppins](https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap) for fonts
+* [uuid](https://www.npmjs.com/package/uuid), to generate random and unique roomIDs
