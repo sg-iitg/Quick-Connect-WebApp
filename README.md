@@ -57,7 +57,7 @@ This will install all dependencies mentioned in package.json
 ```
 nodemon server.js 
 ```
-Note: Setup the peerjs and localhost to same ports when trying to run on local system
+Note: Setup the peerjs and local servers to listen on the same port when working on local host
 
 ## Usage
 ### Homepage
