@@ -58,6 +58,30 @@ nodemon server.js
 ```
 Note: Setup the peerjs and localhost to same ports when trying to run on local system
 
+## Usage
+### Homepage
+
+Two types of users can join a video call, the host or the invities:
+* The host has to simply add their username and start a meeting. This will take him to a new room with a unique roomId using which he can invite other people to the meeting. 
+
+* Invities are required to add their username and the roomId of the particular meeting they wish to join.
+
+### Meeting Area
+* Meeting area looks something like this
+
+* Ability to zoom in to a person's shared screen, on simple tap
+
+* View the participants list
+
+* Chat with people
+
+* Sharable invite message, easy to copy and share
+
+### Leave meet page
+* Leave meet page, option to go back to hompepage
+
+* Come back to the same room to view the chat history
+
 ## Acknowledgements
 
 * [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
