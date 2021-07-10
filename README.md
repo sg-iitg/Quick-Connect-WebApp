@@ -65,25 +65,25 @@ Two types of users can join a video call, the host or the invities:
 * The host has to simply add their username and start a meeting. This will take him to a new room with a unique roomId using which he can invite other people to the meeting. 
   ![](/window_snippets/start-meet.png)
 * Invities are required to add their username and the roomId of the particular meeting they wish to join.
-
+  ![](/window_snippets/join-room.png)
 ### Meeting Area
 * Meeting area looks something like this
-
-* Ability to zoom in to a person's shared screen, on simple tap
-
+  ![](/window_snippets/meet-area.png)
 * View the participants list
-
-* Chat with people
-
+  ![](/window_snippets/participants-list.png)
+* Chat with people 
+  ![](/window_snippets/chat.png)
 * Sharable invite message, easy to copy and share
-
+  ![](/window_snippets/send-invite.png)
+* Ability to zoom in to a person's shared screen, on simple tap
+  ![](/window_snippets/share-screen.png)
 * Alert everyone when someone leaves the meet
-
+  ![](/window_snippets/leave-meet.png)
 ### Leave meet page
 * Leave meet page, option to go back to hompepage
-
+  ![](/window_snippets/leave-meet.png)
 * Come back to the same room to view the chat history
-
+  ![](/window_snippets/chat-history.png)
 ## Acknowledgements
 
 * [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
