@@ -22,7 +22,8 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 
 ### Specialities
 * Only people having access to the roomId can view the chat and join meetings
-* Allows people to join back in the same room and view the chat before or after  meeting
+* Allows people to join back in the same room and view the chat before or after meeting
+* Encrypts the chat before storing on server to maintain privacy and security of chats taking place in a room
 * Has STUN servers configured and hence allows peer to peer connection over varied networks
 * Allows zoom facility on video/screen being shared to have a better experience
 
