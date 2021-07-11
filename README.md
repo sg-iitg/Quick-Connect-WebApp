@@ -19,7 +19,6 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 * Participants List
 * Sharable Invite Message
 * Dedicated Leave meeting option
-* Visually appealing and easy to use UI
 
 ### Specialities
 * Only people having access to the roomId can view the chat and join meetings
@@ -27,6 +26,7 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 * Encrypts the chat before storing on server to maintain privacy and security of chats taking place in a room
 * Has STUN servers configured and hence allows peer to peer connection over varied networks
 * Allows zoom facility on video/screen being shared to have a better experience
+* Visually appealing and easy to use UI
 
 ## Getting Started
 
