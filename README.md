@@ -1,4 +1,4 @@
-# Quick Connect Web Application
+# QuickConnect Web Application
 
 ## [Video Demonstration](https://youtube.com)
 
