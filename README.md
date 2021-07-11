@@ -19,6 +19,7 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 * Participants List
 * Sharable Invite Message
 * Dedicated Leave meeting option
+* Visually appealing and easy to use UI
 
 ### Specialities
 * Only people having access to the roomId can view the chat and join meetings
