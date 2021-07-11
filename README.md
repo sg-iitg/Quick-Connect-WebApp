@@ -1,6 +1,6 @@
 # Quick Connect Web Application
 
-# [Video Demonstration](https://youtube.com)
+## [Video Demonstration](https://youtube.com)
 
 ## About The Website
 
@@ -22,7 +22,8 @@ A hosted version of this website on heroku can be found [here](https://boxing-po
 
 ### Specialities
 * Only people having access to the roomId can view the chat and join meetings
-* Allows people to join back in the same room and view the chat before or after  meeting
+* Allows people to join back in the same room and view the chat before or after meeting
+* Encrypts the chat before storing on server to maintain privacy and security of chats taking place in a room
 * Has STUN servers configured and hence allows peer to peer connection over varied networks
 * Allows zoom facility on video/screen being shared to have a better experience
 
@@ -115,3 +116,4 @@ PS: Videos of all participants were kept off while taking the screenshots for se
 * All icons have been taken from [FontAwesome](https://fontawesome.com/)
 * [Poppins](https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap) for fonts
 * [uuid](https://www.npmjs.com/package/uuid), to generate random and unique roomIDs
+* [CryptoJS](https://www.npmjs.com/package/crypto-js) for encrypting and decrypting chats
