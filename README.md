@@ -1,5 +1,29 @@
 # QuickConnect Web Application
 
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ul>
+    <li>
+      <a href="#video-demonstration">Video Demonstration</a>
+    </li>
+    <li>
+      <a href="#about-the-website">About the website and website link</a>
+    </li>
+    <li>
+      <a href="#key-highlights">Key Highlights - Features and Specialities</a>
+    </li>
+   <li>
+      <a href="#getting-started">Getting Started - Techstacks used, installation, execution</a>
+    </li>
+   <li>
+      <a href="#usage">Usage - Homepage, Meeting Area, Leave meet page</a>
+    </li>
+   <li>
+      <a href="#acknowledgements">Acknowledgements</a>
+    </li>
+  </ul>
+</details>
+
 ## [Video Demonstration](https://youtu.be/-TJdEvu0jG4)
 
 ## About The Website
