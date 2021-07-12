@@ -132,11 +132,17 @@ Two types of users can join a video call, the host or the invitiees:
   ![](/window_snippets/chat-history.png)
   
 PS: Videos of all participants were kept off while taking the screenshots for security reasons
+
+## Agile Methodology
+I followed agile methodology while building this application. I split the avaialable 4 weeks into 4 sprints. At the start of each sprint, I used to decide on the tasks to be completed. Before moving on the next sprint, I used to analyse the updates from previous sprints and hence note down bugs/backlogs carried forward if any. When the adopt feature was released, I already had the chat feature implemented, and I introduced the chat history functionality later. At the end of each sprint, I used to make sure that I had a potentially deployable product ready. 
+
+A detailed summary of how my sprint log looked like, including my plans for the upcoming week, updates from last sprint, backlogs, etc. can be found in the ppt below.
+![](/Sprint_log.pptx)
+As we were following agile methodology, it was easy to incorporate the adopt feature, even in later phase of the development of project and within a short time span.
   
 ## Acknowledgements
 
 * [Web Dev Simplified YouTube Channel](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
-
 * Homepage template inspired from [CodePen](https://codepen.io/)
 * All icons have been taken from [FontAwesome](https://fontawesome.com/)
 * [Poppins](https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap) for fonts
