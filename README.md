@@ -137,7 +137,7 @@ Two types of users can join a video call, the host or the invitiees:
 PS: Videos of all participants were kept off while taking the screenshots for security reasons
 
 ## Agile Methodology
-I followed agile methodology while building this application. I split the avaialable 4 weeks into 4 sprints. At the start of each sprint, I used to decide on the tasks to be completed. Before moving on the next sprint, I used to analyse the updates from previous sprints and hence note down bugs/backlogs carried forward if any. When the adopt feature was released, I already had the chat feature implemented, and I introduced the chat history functionality later. At the end of each sprint, I used to make sure that I had a potentially deployable product ready. 
+I followed agile methodology while building this application. I split the available 4 weeks into 4 sprints. At the start of each sprint, I used to decide on the tasks to be completed. Before moving on the next sprint, I used to analyse the updates from previous sprints and hence note down bugs/backlogs carried forward if any. When the adopt feature was released, I already had the chat feature implemented, and I introduced the chat history functionality later. At the end of each sprint, I used to make sure that I had a potentially deployable product ready. 
 
 A detailed summary of how my sprint log looked like, including my plans for the upcoming week, updates from last sprint, backlogs, etc. can be found in the ppt below.
 
